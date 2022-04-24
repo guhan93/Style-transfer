@@ -120,3 +120,14 @@ if st.button('Generate'):
     stylized_image = tensor_to_image(stylized_image)
     st.subheader("New Image")
     st.image(stylized_image,width=500)
+    from io import BytesIO
+    buf = BytesIO()
+    stylized_image.save(buf, format="JPEG")
+    byte_im = buf.getvalue()
+    btn = st.download_button(
+      label="Download Image",
+      data=byte_im,
+      file_name="Styletransferimage.png",
+      mime="image/jpeg",
+      )
+    
